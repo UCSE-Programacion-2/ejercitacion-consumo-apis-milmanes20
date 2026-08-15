@@ -5,6 +5,18 @@
 //    URL: http://localhost:3000/api/user  (iniciar antes con npm start)
 // 2. Al recibir la respuesta, convertirla a JSON con response.json().
 // 3. Invocar renderizarDatosUsuario() pasándole el objeto JSON completo.
+// Función para pedir los datos del usuario a la API
+// Ruta al archivo JSON local en tu proyecto
+const URL_API = './server/data/user.json';
+
+// Petición a la API / archivo local usando fetch()
+fetch(URL_API)
+  .then((response) => response.json())
+  .then((datos) => {
+    // Invocamos la función pasando la respuesta parseada
+    renderizarDatosUsuario(datos);
+  })
+  .catch((error) => console.error('Error al obtener los usuarios:', error));
 
 // 4. Desarrollar renderizarDatosUsuario(datos):
 //    - Obtener el usuario desde datos.results[0].
