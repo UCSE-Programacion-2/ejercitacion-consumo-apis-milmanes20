@@ -7,7 +7,7 @@
 // 3. Invocar renderizarDatosUsuario() pasándole el objeto JSON completo.
 // Función para pedir los datos del usuario a la API
 // Ruta al archivo JSON local en tu proyecto
-const URL_API = './server/data/user.json';
+const URL_API = './server/data/users.json';
 
 // Petición a la API / archivo local usando fetch()
 fetch(URL_API)
@@ -32,6 +32,23 @@ fetch(URL_API)
 
 function renderizarDatosUsuario(datos) {
   // Escribe aquí tu código para mostrar la foto, nombre completo e email en div.tarjeta
+  // Obtener el usuario desde datos.results[0]
+  const usuario = datos.results[0];
+
+  // Seleccionar el contenedor .tarjeta
+  const tarjeta = document.querySelector('.tarjeta');
+
+  // Construir los valores solicitados
+  const foto = usuario.picture.large;
+  const nombreCompleto = `${usuario.name.title} ${usuario.name.first} ${usuario.name.last}`;
+  const email = usuario.email;
+
+  // Insertar la estructura dentro de .tarjeta
+  tarjeta.innerHTML = `
+    <img src="${foto}" alt="Foto de ${nombreCompleto}">
+    <h2>${nombreCompleto}</h2>
+    <p>${email}</p>
+  `;
 }
 
 /* -------------------------------- CONSIGNA 2 -------------------------------- */
