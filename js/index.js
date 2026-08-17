@@ -59,4 +59,20 @@ function renderizarDatosUsuario(datos) {
 
 function cargarUsuario() {
   // Escribe aquí tu código para realizar un nuevo pedido a la API y actualizar la tarjeta
+  fetch(URL_API)
+    .then((response) => response.json())
+    .then((datos) => {
+      // Seleccionar un índice aleatorio de la lista de resultados
+      const indiceAleatorio = Math.floor(Math.random() * datos.results.length);
+
+      // Crear un objeto simulando la respuesta para ese usuario aleatorio
+      const datosAleatorios = {
+        results: [datos.results[indiceAleatorio]],
+      };
+
+      renderizarDatosUsuario(datosAleatorios);
+    })
+    .catch((error) => console.error('Error al cargar usuario:', error));
 }
+
+//cargarUsuario(); // Llamada inicial para cargar un usuario al cargar la página
